@@ -1,18 +1,20 @@
-const express = require('express');
+import express from 'express';
 const app = express();
 const port = process.env.PORT || 3000;
 
 // Import the routes
-const client1Routes = require('./routes/client1Routes');
+import userRoutes from './routes/userRoutes.js';
+import adminRoutes from './routes/adminroutes.js'
 
-// Import error handler
-const errorHandler = require('./middleware/errorHandler');
+// Use the routes
+app.use('/api', userRoutes);
+app.use('/admin', adminRoutes);
 
 // Middleware to parse JSON bodies
 app.use(express.json());
 
-// Use the routes
-app.use('/client1', client1Routes);
+// Import error handler
+import errorHandler from './middleware/errorHandler.js';
 
 // Use error handler
 app.use(errorHandler);

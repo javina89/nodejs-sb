@@ -1,5 +1,6 @@
-const { constants } = require('../constants');
-export function errorHandler(err, req, res, next) {
+import { constants } from '../constants.js';
+
+export default function errorHandler(err, req, res, next) {
     const statusCode = res.statusCode ? res.statusCode : 500;
     switch (statusCode){
         case constants.VALIDATION_ERROR:
